@@ -1,25 +1,32 @@
 /** product: calculate the product of an array of numbers. */
-
+//[1,2,3,4]
 function product(nums) {
-
+  if (nums.length === 0) return 1; //base case
+  return nums[0] * product(nums.slice(1)); //progress
 }
 
 /** longest: return the length of the longest word in an array of words. */
-
+//longest(["hello", "hi", "hola"]);  // 5
 function longest(words) {
-
+  if (words.length === 0) return 0; //base case
+  return Math.max(words[0].length, longest(words.slice(1))); //progress
 }
 
 /** everyOther: return a string with every other letter. */
-
+//everyOther("hello");  // "hlo"
 function everyOther(str) {
-
+  if (str.length === 0) return ""; //base case
+  return str[0] + everyOther(str.slice(2)); //progress
 }
 
 /** find: return boolean depending on if val exists in array or not. */
+// let animals = ["duck", "cat", "pony"];
 
+// find(animals, "cat");  // true
+// find(animals, "porcupine");   // false
 function find(arr, val) {
-
+  if (arr.length === 0) return false; //base case
+  return arr[0] === val || find(arr.slice(1), val); //progress
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */

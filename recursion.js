@@ -32,25 +32,38 @@ function find(arr, val) {
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
 function isPalindrome(str) {
-
+  if (str.length === 0) return true; // base case
+  return str[0] === str[str.length - 1] &&
+    isPalindrome(str.slice(1, str.length - 1)); // progress
 }
 
 /** revString: return a copy of a string, but in reverse. */
 
 function revString(str) {
-
+  if (str.length === 0) return ''; // base case
+  return str[str.length - 1] + revString(str.slice(0, str.length - 1)); // progress
 }
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
-function findIndex(arr, val) {
-
+function findIndex(arr, val, i=0) {
+  if (arr.length === i) return -1; // base case
+  return (arr[i] === val) ? i : findIndex(arr, val, i + 1) // progress
 }
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {
+function gatherStrings(obj, strings=[]) {
+  for (let key in obj) { // base case & progress
+    const val = obj[key]
+    if (typeof val === 'object' && !Array.isArray(val) && val !== null) {
+      gatherStrings(obj[key], strings);
+    } else if (typeof val === 'string') {
+      strings.push(val);
+    }
+  }
 
+  return strings;
 }
 
 // FURTHER STUDY

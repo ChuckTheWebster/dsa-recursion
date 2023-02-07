@@ -87,9 +87,22 @@ function binarySearch(arr, val) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val) {
+function binarySearchIndex(arr, val, left=0, right=arr.length - 1) {
+  if (arr.length === 0) return -1;
+  if (left > right) return -1;
+  if (left === right) return (arr[left] === val) ? left : -1;
 
+  mid = Math.floor((left + right) / 2);
+  if (arr[mid] === val) return mid;
+
+  if (arr[mid] > val) {
+    return binarySearchIndex(arr, val, left, mid - 1)
+  } else {
+    return binarySearchIndex(arr, val, mid + 1, right)
+  }
 }
+
+//arr = [1], left = 0, right = 0, mid = 0
 
 // you might find the above two problems easier if you change the function signature to:
 //

@@ -72,7 +72,15 @@ function gatherStrings(obj, strings=[]) {
  * return true if val is in array, false if not present). */
 
 function binarySearch(arr, val) {
-
+  //base case: empty array
+  if (arr.length === 0) return false;
+  const idxToCompare = Math.floor(arr.length / 2);
+  if (val === arr[idxToCompare]) return true;
+  if (val < arr[idxToCompare])  {
+    return binarySearch(arr.slice(0, idxToCompare), val);
+  } else {
+    return binarySearch(arr.slice(idxToCompare + 1, arr.length), val);
+  }
 }
 
 
